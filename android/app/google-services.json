@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "715100984038",
+    "project_id": "bloclogin-3f23e",
+    "storage_bucket": "bloclogin-3f23e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715100984038:android:2cb069be08823477ce6127",
+        "android_client_info": {
+          "package_name": "com.example.barbearia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYvEbFpxbchUDdCbXY5R7ZILmFHJ58HB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715100984038:android:3339e32b77b27c40ce6127",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYvEbFpxbchUDdCbXY5R7ZILmFHJ58HB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
