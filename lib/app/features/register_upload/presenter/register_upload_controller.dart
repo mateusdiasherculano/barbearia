@@ -19,6 +19,7 @@ class RegisterUploadController extends Disposable {
 
     if (image?.path != null) {
       imagePath.value = image?.path;
+      await registerUploadStore.saveImage(imagePath.value!);
     }
 
     isLoading.value = false;

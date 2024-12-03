@@ -8,7 +8,7 @@ class RegisterUploadStore extends Store<UserProfileModel> {
 
   RegisterUploadStore(this._useCase) : super(UserProfileModel());
 
-  Future<void> getProfile() async {
-    return execute(() => _useCase());
+  Future<void> saveImage(String imagePath) async {
+    return execute(() => _useCase(imagePath));
   }
 }

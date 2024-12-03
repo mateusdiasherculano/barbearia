@@ -4,8 +4,8 @@ import '../../infra/datasources/register_upload_datasource.dart';
 
 class RegisterUploadDatasourceImpl extends RegisterUploadDatasource {
   @override
-  Future<UserProfileModel> getProfile() {
-    // TODO: implement getProfile
+  Future<UserProfileModel> saveImage(String imagePath) {
+    // TODO: implement saveImage
     throw UnimplementedError();
   }
 }
