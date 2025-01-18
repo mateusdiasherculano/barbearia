@@ -67,7 +67,6 @@ class Profile {
   String? phone;
   String? password;
   String? imageUrl;
-  String? favoriteBarberId;
   String? yourAvailabilityId;
 
   Profile({
@@ -77,7 +76,6 @@ class Profile {
     this.phone,
     this.password,
     this.imageUrl,
-    this.favoriteBarberId,
     this.yourAvailabilityId,
   });
 
@@ -89,8 +87,7 @@ class Profile {
       email: json['email'],
       phone: json['phone'],
       password: json['password'],
-      imageUrl: json['profile_image_url'],
-      favoriteBarberId: json['favorite_barber_id'],
+      imageUrl: json['image_url'],
       yourAvailabilityId: json['your_availability_id'],
     );
   }
@@ -103,8 +100,7 @@ class Profile {
       'email': email,
       'phone': phone,
       'password': password,
-      'profile_image_url': imageUrl,
-      'favorite_barber_id': favoriteBarberId,
+      'image_url': imageUrl,
       'your_availability_id': yourAvailabilityId,
     };
   }

@@ -25,24 +25,28 @@ class RegisterUploadDatasourceImpl extends RegisterUploadDatasource {
       // Define o caminho para salvar a imagem no firebase Storage
       final storageRef =
           _firebaseStorage.ref().child("user_images").child("${user.uid}.jpg");
-
-      // Faz upload da imagem
       final uploadImage = await storageRef.putFile(File(imagePath));
-      final downloadUrl = await uploadImage.ref.getDownloadURL();
+      final imageUrl = await uploadImage.ref.getDownloadURL();
 
-      // Atualiza a URL da imagem no Firestore
       final userProfileRef =
           _firebaseFirestore.collection("Users").doc(user.uid);
+      final docSnapshot = await userProfileRef.get();
 
-      // Atualiza o Profile com a nova imagem do usuario
-      await userProfileRef.update({'profile_image_url': downloadUrl});
+      if (!docSnapshot.exists) {
+        throw Exception("Documento do usuário não encontrado no Firestore");
+      }
+      await userProfileRef.update({'image_url': imageUrl});
 
-      // Obtem o documento atualizado
+      // Recupera o documento atualizado
       final updateDoc = await userProfileRef.get();
       final updateData = updateDoc.data();
 
+      if (updateData == null) {
+        throw Exception("Erro ao obter dados atualizados do firestore");
+      }
+
       // Retorna o modelo atualizado
-      return UserProfileModel.fromJson(updateData!);
+      return UserProfileModel.fromJson(updateData);
     } catch (e) {
       throw Exception("Erro ao salvar imagem: $e");
     }
