@@ -16,37 +16,22 @@ class RegisterUploadDatasourceImpl extends RegisterUploadDatasource {
   @override
   Future<UserProfileModel> saveImage(String imagePath) async {
     try {
-      // Obtem o usuario autenticado
-      final user = _auth.currentUser;
-      if (user == null) {
-        throw Exception("Usuario não autenticado");
-      }
+      final String userId = _auth.currentUser!.uid;
 
-      // Define o caminho para salvar a imagem no firebase Storage
-      final storageRef =
-          _firebaseStorage.ref().child("user_images").child("${user.uid}.jpg");
-      final uploadImage = await storageRef.putFile(File(imagePath));
-      final imageUrl = await uploadImage.ref.getDownloadURL();
+      final String saveImagePath = "user_images/$userId/profile_photo.jpg";
+      final Reference imageRef = _firebaseStorage.ref(saveImagePath);
+      final UploadTask imageUploadTask = imageRef.putFile(File(imagePath));
+      final TaskSnapshot taskSnapshot = await imageUploadTask;
 
-      final userProfileRef =
-          _firebaseFirestore.collection("Users").doc(user.uid);
-      final docSnapshot = await userProfileRef.get();
+      final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+      final DocumentReference userDocumentRef =
+          _firebaseFirestore.collection('Users').doc(userId);
 
-      if (!docSnapshot.exists) {
-        throw Exception("Documento do usuário não encontrado no Firestore");
-      }
-      await userProfileRef.update({'image_url': imageUrl});
+      await userDocumentRef.update({'image_url': downloadUrl});
+      final DocumentSnapshot updatedDocument = await userDocumentRef.get();
+      final docAfterUpdate = updatedDocument.data() as Map<String, dynamic>;
 
-      // Recupera o documento atualizado
-      final updateDoc = await userProfileRef.get();
-      final updateData = updateDoc.data();
-
-      if (updateData == null) {
-        throw Exception("Erro ao obter dados atualizados do firestore");
-      }
-
-      // Retorna o modelo atualizado
-      return UserProfileModel.fromJson(updateData);
+      return UserProfileModel.fromJson(docAfterUpdate);
     } catch (e) {
       throw Exception("Erro ao salvar imagem: $e");
     }

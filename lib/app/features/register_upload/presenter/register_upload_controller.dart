@@ -19,21 +19,24 @@ class RegisterUploadController extends Disposable {
 
     if (image?.path != null) {
       imagePath.value = image?.path;
-      await registerUploadStore.saveImage(imagePath.value!);
     }
-
     isLoading.value = false;
   }
 
   Future<void> takeGalleryPhoto() async {
+    isLoading.value = true;
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(
         source: ImageSource.gallery, maxHeight: 1024, maxWidth: 1024);
 
     if (image?.path != null) {
       imagePath.value = image?.path;
-      await registerUploadStore.saveImage(imagePath.value!);
     }
+    isLoading.value = false;
+  }
+
+  Future<void> updateController() async {
+    await registerUploadStore.saveImage(imagePath.value!);
   }
 
   @override

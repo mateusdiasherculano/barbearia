@@ -141,7 +141,7 @@ class _RegisterUploadPageState extends State<RegisterUploadPage> {
                             children: [
                               ButtonLoading(
                                 onPressed: () {
-                                  controller.imagePath.value;
+                                  controller.updateController();
                                 },
                                 text: 'Save image',
                                 loading:
