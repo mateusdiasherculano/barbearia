@@ -23,15 +23,24 @@ class RegisterUploadDatasourceImpl extends RegisterUploadDatasource {
       final UploadTask imageUploadTask = imageRef.putFile(File(imagePath));
       final TaskSnapshot taskSnapshot = await imageUploadTask;
 
-      final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
-      final DocumentReference userDocumentRef =
-          _firebaseFirestore.collection('Users').doc(userId);
+      final QuerySnapshot featchDocId = await _firebaseFirestore
+          .collection('Users')
+          .where('id', isEqualTo: userId)
+          .limit(1)
+          .get();
 
-      await userDocumentRef.update({'image_url': downloadUrl});
-      final DocumentSnapshot updatedDocument = await userDocumentRef.get();
-      final docAfterUpdate = updatedDocument.data() as Map<String, dynamic>;
+      if (featchDocId.docs.isNotEmpty) {
+        final DocumentSnapshot userDoc = featchDocId.docs.first;
+        final String documentId = userDoc.id;
+        final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
 
-      return UserProfileModel.fromJson(docAfterUpdate);
+        await _firebaseFirestore
+            .collection('Users')
+            .doc(documentId)
+            .update({'image_url': downloadUrl});
+      }
+
+      return UserProfileModel.fromJson();
     } catch (e) {
       throw Exception("Erro ao salvar imagem: $e");
     }

@@ -32,10 +32,10 @@ class LoginDatasourceImpl implements LoginDatasource {
   }
 
   @override
-  Future<RegisterResponse> resetPassword(String? email) async {
+  Future<MessageResponse> resetPassword(String? email) async {
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email!);
-      return RegisterResponse(
+      return MessageResponse(
           message:
               'Enviamos uma mensagem para seu e-mail para redefinir sua senha!');
     } on FirebaseAuthException catch (e) {

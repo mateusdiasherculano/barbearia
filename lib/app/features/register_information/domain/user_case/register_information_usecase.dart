@@ -3,7 +3,7 @@ import 'package:barbearia/app/features/register_information/domain/entity/user_p
 import '../repository/register_information_repository.dart';
 
 abstract class IExecute {
-  Future<RegisterResponse> call(
+  Future<MessageResponse> call(
       String name, String email, String password, String phone);
 }
 
@@ -12,7 +12,7 @@ class RegisterInformationUseCase extends IExecute {
 
   RegisterInformationUseCase(this._repository);
   @override
-  Future<RegisterResponse> call(
+  Future<MessageResponse> call(
       String? name, String? email, String? password, String? phone) async {
     return await _repository.registerPersonal(name, email, password, phone);
   }

@@ -41,14 +41,14 @@ class UserProfileModel {
 }
 
 /// Classe representando a resposta do processo de registro.
-class RegisterResponse {
+class MessageResponse {
   String? message;
 
-  RegisterResponse({this.message});
+  MessageResponse({this.message});
 
   /// Construtor a partir de JSON.
-  factory RegisterResponse.fromJson(Map<String, dynamic> json) {
-    return RegisterResponse(message: json['message']);
+  factory MessageResponse.fromJson(Map<String, dynamic> json) {
+    return MessageResponse(message: json['message']);
   }
 
   /// Método que converte RegisterResponse para JSON.

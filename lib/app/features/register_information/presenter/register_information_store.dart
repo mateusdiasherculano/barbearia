@@ -3,9 +3,9 @@ import 'package:flutter_triple/flutter_triple.dart';
 
 import '../domain/user_case/register_information_usecase.dart';
 
-class RegisterInformationStore extends Store<RegisterResponse> {
+class RegisterInformationStore extends Store<MessageResponse> {
   final RegisterInformationUseCase _useCase;
-  RegisterInformationStore(this._useCase) : super(RegisterResponse());
+  RegisterInformationStore(this._useCase) : super(MessageResponse());
 
   Future<void> registerPersonal(
       String name, String email, String password, String phone) async {

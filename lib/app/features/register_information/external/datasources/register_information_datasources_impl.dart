@@ -13,7 +13,7 @@ class RegisterInformationDatasourcesImpl
   final FirebaseAuth _auth = Modular.get();
 
   @override
-  Future<RegisterResponse> registerPersonal(
+  Future<MessageResponse> registerPersonal(
       String? name, String? email, String? password, String? phone) async {
     try {
       // Criação do usuario com email e senha
@@ -38,7 +38,7 @@ class RegisterInformationDatasourcesImpl
       await _db.collection("Users").add(profileData);
 
       // Retorno da instancia de Register com uma mensagem de sucesso
-      return RegisterResponse(message: 'Dados salvos com sucesso');
+      return MessageResponse(message: 'Dados salvos com sucesso');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'network-request-failed') {
         throw 'Verifique sua internet';

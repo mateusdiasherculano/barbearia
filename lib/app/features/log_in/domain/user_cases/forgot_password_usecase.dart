@@ -3,7 +3,7 @@ import 'package:barbearia/app/features/log_in/domain/repository/login_repository
 import '../../../register_information/domain/entity/user_profile_model.dart';
 
 abstract class IExecute {
-  Future<RegisterResponse> call(String? email);
+  Future<MessageResponse> call(String? email);
 }
 
 class ForgotPasswordUseCase extends IExecute {
@@ -12,7 +12,7 @@ class ForgotPasswordUseCase extends IExecute {
   ForgotPasswordUseCase(this._repository);
 
   @override
-  Future<RegisterResponse> call(String? email) async {
+  Future<MessageResponse> call(String? email) async {
     return await _repository.resetPassword(email);
   }
 }

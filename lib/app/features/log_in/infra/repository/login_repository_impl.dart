@@ -14,7 +14,7 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   @override
-  Future<RegisterResponse> resetPassword(String? email) async {
+  Future<MessageResponse> resetPassword(String? email) async {
     var result = await _datasource.resetPassword(email);
     return result;
   }
