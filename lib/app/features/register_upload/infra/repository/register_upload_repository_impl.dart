@@ -9,7 +9,7 @@ class RegisterUploadRepositoryImpl extends RegisterUploadRepository {
   RegisterUploadRepositoryImpl(this._datasource);
 
   @override
-  Future<UserProfileModel> saveImage(String imagePath) async {
+  Future<MessageResponse> saveImage(String imagePath) async {
     var result = await _datasource.saveImage(imagePath);
     return result;
   }

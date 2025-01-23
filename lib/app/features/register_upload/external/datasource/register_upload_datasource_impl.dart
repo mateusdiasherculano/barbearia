@@ -14,7 +14,7 @@ class RegisterUploadDatasourceImpl extends RegisterUploadDatasource {
   final FirebaseAuth _auth = Modular.get();
 
   @override
-  Future<UserProfileModel> saveImage(String imagePath) async {
+  Future<MessageResponse> saveImage(String imagePath) async {
     try {
       final String userId = _auth.currentUser!.uid;
 
@@ -23,14 +23,14 @@ class RegisterUploadDatasourceImpl extends RegisterUploadDatasource {
       final UploadTask imageUploadTask = imageRef.putFile(File(imagePath));
       final TaskSnapshot taskSnapshot = await imageUploadTask;
 
-      final QuerySnapshot featchDocId = await _firebaseFirestore
+      final QuerySnapshot fetchDocId = await _firebaseFirestore
           .collection('Users')
           .where('id', isEqualTo: userId)
           .limit(1)
           .get();
 
-      if (featchDocId.docs.isNotEmpty) {
-        final DocumentSnapshot userDoc = featchDocId.docs.first;
+      if (fetchDocId.docs.isNotEmpty) {
+        final DocumentSnapshot userDoc = fetchDocId.docs.first;
         final String documentId = userDoc.id;
         final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
 
@@ -40,7 +40,7 @@ class RegisterUploadDatasourceImpl extends RegisterUploadDatasource {
             .update({'image_url': downloadUrl});
       }
 
-      return UserProfileModel.fromJson();
+      return MessageResponse(message: "Imagem salva com sucesso.");
     } catch (e) {
       throw Exception("Erro ao salvar imagem: $e");
     }

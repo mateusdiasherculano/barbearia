@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:barbearia/app/features/register_upload/presenter/register_upload_controller.dart';
+import 'package:barbearia/libraries/design_system/src/common/extension/widgets_extension.dart';
+import 'package:barbearia/libraries/design_system/src/widgets/error/ErrorAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../libraries/design_system/src/widgets/button/button_loading.dart';
+import '../../../../libraries/design_system/src/widgets/error/sucess_alert.dart';
 
 class RegisterUploadPage extends StatefulWidget {
   const RegisterUploadPage({super.key});
@@ -15,6 +18,17 @@ class RegisterUploadPage extends StatefulWidget {
 
 class _RegisterUploadPageState extends State<RegisterUploadPage> {
   final RegisterUploadController controller = Modular.get();
+
+  @override
+  void initState() {
+    controller.registerUploadStore.observer(onState: (state) {
+      SuccessAlert(message: state.message).show(context);
+      Modular.to.pushNamed("/BarberDashboard");
+    }, onError: (error) {
+      ErrorAlert(message: error?.message).show(context);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
