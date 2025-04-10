@@ -10,6 +10,8 @@ class BarberDashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<BarberDashboardPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Colors.white,
+    );
   }
 }
