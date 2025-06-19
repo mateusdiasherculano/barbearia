@@ -23,7 +23,7 @@ class _RegisterUploadPageState extends State<RegisterUploadPage> {
   void initState() {
     controller.registerUploadStore.observer(onState: (state) {
       SuccessAlert(message: state.message).show(context);
-      Modular.to.pushNamed('/upload');
+      Modular.to.pushNamed('/BarberDashboard');
     }, onError: (error) {
       ErrorAlert(message: error?.message).show(context);
     });
