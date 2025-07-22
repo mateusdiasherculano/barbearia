@@ -1,4 +1,4 @@
-import 'package:barbearia/app/features/log_in/domain/repository/login_repository.dart';
+import 'package:barbearia/app/features/login/domain/repository/login_repository.dart';
 import 'package:barbearia/app/features/register_information/domain/entity/user_profile_model.dart';
 
 abstract class IExecute {

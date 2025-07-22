@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^11.7.5
   firebase_crashlytics: ^3.5.4
   image_picker: ^1.1.2
+  table_calendar: ^3.2.0
 
 
 
@@ -52,6 +53,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mocktail: ^1.0.4
+  coverage: ^1.8.0
   integration_test:
     sdk: flutter
 

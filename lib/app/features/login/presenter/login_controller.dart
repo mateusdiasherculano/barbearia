@@ -1,4 +1,4 @@
-import 'package:barbearia/app/features/log_in/presenter/log_in_store.dart';
+import 'package:barbearia/app/features/login/presenter/log_in_store.dart';
 import 'package:barbearia/libraries/core/src/extension/string_extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';

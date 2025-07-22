@@ -1,4 +1,4 @@
-import 'package:barbearia/app/features/log_in/domain/user_cases/login_usecase.dart';
+import 'package:barbearia/app/features/login/domain/user_cases/login_usecase.dart';
 import 'package:barbearia/app/features/register_information/domain/entity/user_profile_model.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 

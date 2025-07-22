@@ -1,4 +1,4 @@
-import 'package:barbearia/app/features/log_in/presenter/forgot_password_controller.dart';
+import 'package:barbearia/app/features/login/presenter/forgot_password_controller.dart';
 import 'package:barbearia/components/custom_text_widget.dart';
 import 'package:barbearia/libraries/core/src/extension/string_extensions.dart';
 import 'package:barbearia/libraries/design_system/src/common/extension/widgets_extension.dart';

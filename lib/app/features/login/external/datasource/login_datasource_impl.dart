@@ -1,4 +1,4 @@
-import 'package:barbearia/app/features/log_in/infra/datasources/login_datasource.dart';
+import 'package:barbearia/app/features/login/infra/datasources/login_datasource.dart';
 import 'package:barbearia/app/features/register_information/domain/entity/user_profile_model.dart';
 import 'package:barbearia/libraries/core/src/app_utils/app_utils.dart';
 import 'package:barbearia/libraries/core/src/error/failure.dart';

@@ -1,5 +1,5 @@
-import 'package:barbearia/app/features/log_in/domain/repository/login_repository.dart';
-import 'package:barbearia/app/features/log_in/infra/datasources/login_datasource.dart';
+import 'package:barbearia/app/features/login/domain/repository/login_repository.dart';
+import 'package:barbearia/app/features/login/infra/datasources/login_datasource.dart';
 import 'package:barbearia/app/features/register_information/domain/entity/user_profile_model.dart';
 
 class LoginRepositoryImpl implements LoginRepository {

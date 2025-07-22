@@ -1,5 +1,5 @@
 import 'package:barbearia/app/features/barber_dashboard/barber_dashboard_module.dart';
-import 'package:barbearia/app/features/log_in/log_in_module.dart';
+import 'package:barbearia/app/features/login/log_in_module.dart';
 import 'package:barbearia/app/features/welcome/welcome_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
