@@ -14,7 +14,7 @@ void main() {
     controller = LoginController(mockStore);
   });
 
-  group('Verificacao de login', () {
+  group('validacao dos dados para login', () {
     test('email vazio gera erro emailError', () async {
       await controller.login('', '1123456');
       expect(controller.emailError.value, 'E-mail não pode ser vazio');
