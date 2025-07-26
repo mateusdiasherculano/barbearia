@@ -19,27 +19,28 @@ void main() {
   const password = '123456';
   final fakeUser = UserProfileModel(uid: 'abc123', email: email);
 
-  group('LoginStore tests', () {
-    test('deve chamar o usecase com email e senha', () async {
-      when(() => mockLoginUseCase.call(email, password))
-          .thenAnswer((_) async => fakeUser);
+  void mockLoginSucess() {
+    when(() => mockLoginUseCase.call(email, password))
+        .thenAnswer((_) async => fakeUser);
+  }
 
+  group('LoginStore tests', () {
+    test('login() Should call usecase with correct parameters', () async {
+      mockLoginSucess();
       await store.login(email, password);
 
       verify(() => mockLoginUseCase.call(email, password)).called(1);
     });
 
-    test('deve atualizar o estado com o UserProfileModel retornado', () async {
-      when(() => mockLoginUseCase.call(email, password))
-          .thenAnswer((_) async => fakeUser);
-
+    test('Should update state with returned UserProfileModel', () async {
+      mockLoginSucess();
       await store.login(email, password);
 
       expect(store.state.uid, equals('abc123'));
       expect(store.state.email, equals(email));
     });
 
-    test('deve mostrar error se o usecase lancar excecao', () async {
+    test('Should set error if usecase throws an exception', () async {
       final exception = Exception('erro de login');
 
       when(() => mockLoginUseCase.call(email, password)).thenAnswer((_) async {
@@ -51,7 +52,7 @@ void main() {
       expect(store.error, equals(exception));
     });
 
-    test('deve alternar isLoading corretamente durante a execucao', () async {
+    test('Should toggle isLoading correctly during execution', () async {
       when(() => mockLoginUseCase.call(email, password)).thenAnswer((_) async {
         expect(store.isLoading, true); // durante
         return fakeUser;

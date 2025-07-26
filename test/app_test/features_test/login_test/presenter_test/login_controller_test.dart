@@ -9,33 +9,44 @@ void main() {
   late LoginController controller;
   late MockLoginStore mockStore;
 
+  const emptyEmail = '';
+  const invalidEmail = 'email.com';
+  const email = 'teste@gmail.com';
+  const password = '123456';
+  const emptyPassword = '';
+
   setUp(() {
     mockStore = MockLoginStore();
     controller = LoginController(mockStore);
   });
 
-  group('validacao dos dados para login', () {
-    test('email vazio gera erro emailError', () async {
-      await controller.login('', '1123456');
+  group('LoginController - Email validation', () {
+    test('Should set emailError when email is empty', () async {
+      await controller.login(emptyEmail, password);
       expect(controller.emailError.value, 'E-mail não pode ser vazio');
     });
 
-    test('email invalido gera erro emailError', () async {
-      await controller.login('emailinvalido', '123456');
+    test('Should set emailError when email is invalid', () async {
+      await controller.login(invalidEmail, password);
       expect(controller.emailError.value, 'Email não é valido.');
     });
+  });
 
-    test('senha vazia gera erro passwordError', () async {
-      await controller.login('teste@gmail.com', '');
+  group('LoginController - Password validation', () {
+    test('Should set passwordError when password is empty', () async {
+      await controller.login(email, emptyPassword);
       expect(controller.passwordError.value, 'Senha nao pode ser vazia');
     });
+  });
 
-    test('dados validos chama store.login', () async {
+  group('LoginController - Valid credentials', () {
+    test('Should call store.login() with correct parameters when data is valid',
+        () async {
       when(() => mockStore.login(any(), any())).thenAnswer((_) async {});
 
-      await controller.login('teste@gmail.com', '123456');
+      await controller.login(email, password);
 
-      verify(() => mockStore.login('teste@gmail.com', '123456')).called(1);
+      verify(() => mockStore.login(email, password)).called(1);
 
       expect(controller.emailError.value, null);
       expect(controller.passwordError.value, null);

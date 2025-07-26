@@ -1,9 +1,9 @@
 SF:lib\app\features\login\presenter\log_in_store.dart
-DA:8,0
-DA:10,0
-DA:11,0
+DA:8,3
+DA:10,1
+DA:11,4
 LF:3
-LH:0
+LH:3
 end_of_record
 SF:lib\app\features\login\presenter\login_controller.dart
 DA:9,1
@@ -24,7 +24,7 @@ LF:14
 LH:9
 end_of_record
 SF:lib\app\features\register_information\domain\entity\user_profile_model.dart
-DA:9,0
+DA:9,1
 DA:16,0
 DA:17,0
 DA:18,0
@@ -65,7 +65,7 @@ DA:102,0
 DA:103,0
 DA:104,0
 LF:40
-LH:0
+LH:1
 end_of_record
 SF:lib\app\features\login\domain\user_cases\login_usecase.dart
 DA:11,0
