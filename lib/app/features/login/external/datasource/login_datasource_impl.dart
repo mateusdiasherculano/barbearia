@@ -3,10 +3,11 @@ import 'package:barbearia/app/features/register_information/domain/entity/user_p
 import 'package:barbearia/libraries/core/src/app_utils/app_utils.dart';
 import 'package:barbearia/libraries/core/src/error/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginDatasourceImpl implements LoginDatasource {
-  final FirebaseAuth firebaseAuth = Modular.get();
+  final FirebaseAuth firebaseAuth;
+
+  LoginDatasourceImpl(this.firebaseAuth);
 
   @override
   Future<UserProfileModel> login(String? email, String? password) async {
