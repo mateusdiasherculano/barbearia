@@ -1,4 +1,5 @@
 import 'package:barbearia/app/features/login/external/datasource/login_datasource_impl.dart';
+import 'package:barbearia/app/features/login/infra/datasources/login_datasource.dart';
 import 'package:barbearia/app/features/register_information/domain/entity/user_profile_model.dart';
 import 'package:barbearia/libraries/core/src/error/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +11,7 @@ class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 class MockUserCredential extends Mock implements UserCredential {}
 
 void main() {
-  late LoginDatasourceImpl datasource;
+  late LoginDatasource datasource;
   late MockFirebaseAuth mockFirebaseAuth;
 
   const email = 'teste@gmail.com';
