@@ -19,6 +19,7 @@ class ForgotPasswordController extends Disposable {
     }
     if (!email.isEmail) {
       emailError.value = 'E-mail nao é valido';
+      return;
     }
     store.resetPassword(email);
   }
