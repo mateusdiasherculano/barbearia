@@ -18,7 +18,7 @@ void main() {
     controller = ForgotPasswordController(mockForgotPasswordStore);
   });
 
-  group('ForgotPasswordController - Email validation', () {
+  group('ForgotPasswordController - Tests', () {
     test('should set emailError when email is empty', () async {
       await controller.resetPassword(emptyEmail);
       expect(controller.emailError.value, 'E-mail não pode ser vazio');

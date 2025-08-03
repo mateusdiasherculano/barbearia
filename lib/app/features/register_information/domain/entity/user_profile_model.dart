@@ -40,7 +40,6 @@ class UserProfileModel {
   }
 }
 
-/// Classe representando a resposta do processo de registro.
 class MessageResponse {
   String? message;
 
